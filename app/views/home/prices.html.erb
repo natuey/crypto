@@ -1,0 +1,30 @@
+<h1>Crypto Information</h1><br/><br/>
+
+
+
+<% if @symbol %>
+    <% if @quote['Response'] %>
+        <h3>The Crypto Symbol <%= @symbol %> is not exist. Please enter a valid Symbol</h3>
+            <h5>Please enter a crypto symbol </h5><br/>
+            <%= form_tag home_prices_path, :method => 'POST', class: "form-inline my-2 my-lg-0" do %>
+            <%= text_field_tag 'sym', nil, placeholder: 'Enter a Crypto Symbol', class: "form-control mr-sm-2" %>
+            <%= submit_tag 'Lookup', class: "btn btn-outline-secondary my-2 my-sm-0" %>
+        <% end %>
+    <% else %>
+        <% @quote['DISPLAY'].each do |key, value| %><br/>
+            <div class="jumbotron">
+            <h1 class="display-4"><%= key %></h1>
+                Price: <%= value['USD']['PRICE'] %><br/>
+                24h HIGH: <%= value['USD']['HIGHDAY'] %><br/>
+                24h LOW: <%= value['USD']['LOWDAY'] %><br/>
+                Market Cap: <%= value['USD']['MKTCAP'] %><br/>
+            </div>
+        <% end %>
+    <% end %>
+<% else %>
+    <h5>Please enter a crypto symbol </h5><br/>
+    <%= form_tag home_prices_path, :method => 'POST', class: "form-inline my-2 my-lg-0" do %>
+    <%= text_field_tag 'sym', nil, placeholder: 'Enter a Crypto Symbol', class: "form-control mr-sm-2" %>
+    <%= submit_tag 'Lookup', class: "btn btn-outline-secondary my-2 my-sm-0" %>
+    <% end %>   
+<% end %>

@@ -1,0 +1,45 @@
+<h1>Cryptonerds</h1>
+
+<table class="table table-sm table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">24h HIGH</th>
+        <th scope="col">24h LOW</th>
+        <th scope="col">MarketCap</th>
+     </tr>
+    </thead>
+    <tbody>
+        <% @prices['DISPLAY'].each do |key, value| %><br/>
+            <tr>
+            <td><%= key %></td>
+            <td><%= value['USD']['PRICE'] %></td>
+            <td><%= value['USD']['HIGHDAY'] %></td>
+            <td><%= value['USD']['LOWDAY'] %></td>
+            <td><%= value['USD']['MKTCAP'] %></td>
+            </tr> 
+        <% end %>
+    </tbody>
+</table>
+
+
+<br/>
+<div class='container'>
+    <div class='row'>
+        
+        <% for x in @news['Data'] %>
+            <div class='col-sm'>
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= x['imageurl'] %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= x['title'] %></h5>
+                        <p class="card-text"><%= x['body'] %></p>
+                        <a href="<%= x['guid'] %>" class="btn btn-secondary">Read More...</a>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        
+    </div>
+</div>
